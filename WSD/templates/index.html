@@ -16,21 +16,6 @@
     </li>
   </ul>
 </div>  
-  <ul>
-    {% for man in managers %}
-  <div class="row">
-      <h6><center>{{man.name}} @ {{man.branch}} Branch</center></h6>
-  </div>
-  {% if man.m_phone|length >  9 %}
-   <li>Primary: {{man.m_phone}}</li></br>
-   {% else %}
-   <li>No Primary Phone</li>
-   {% endif %}
-   {% if man.m_phone1|length > 9 %}
-   <li>Secondary: {{man.m_phone1}}</li></br>
-   {% endif %}
-{% endfor %}
-  </ul>
 {% endblock %}
 
 
