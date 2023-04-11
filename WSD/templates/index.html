@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/managers">Managers</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/branchs">Branches</a>
+    </li>
+    <li class="nav-item">
+      <input class="form-control border-end-0 border rounded-pill" type="text" value="search" id="example-search-input">
+    </li>
+  </ul>
+</div>  
+  <ul>
+    {% for man in managers %}
+  <div class="row">
+      <h6><center>{{man.name}} @ {{man.branch}} Branch</center></h6>
+  </div>
+  {% if man.m_phone|length >  9 %}
+   <li>Primary: {{man.m_phone}}</li></br>
+   {% else %}
+   <li>No Primary Phone</li>
+   {% endif %}
+   {% if man.m_phone1|length > 9 %}
+   <li>Secondary: {{man.m_phone1}}</li></br>
+   {% endif %}
+{% endfor %}
+  </ul>
+{% endblock %}
+
+
