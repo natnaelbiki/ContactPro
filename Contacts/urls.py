@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('managers', views.ManagerView, name="managers"),
     path('branchs', views.BranchView, name="branchs"),
+    path('search', views.SearchView, name="search"),
     path('admin/', admin.site.urls),
     
 ]
