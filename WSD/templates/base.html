@@ -25,9 +25,11 @@
           <a class="nav-link" href="/branchs">Branches</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" action='{% url "search"%}' type="submit">Search</button>
+      <form class="d-flex" action="{% url 'search_manager' %}" method="get">
+        <input class="form-control me-2" name="qm" type="text" placeholder="Search Managers">
+      </form>
+      <form class="d-flex" action="{% url 'search_branch' %}" method="get">
+        <input class="form-control me-2" name="qb" type="text" placeholder="Search Branches">
       </form>
     </div>
   </div>
@@ -39,7 +41,7 @@
 {% endblock %}
 <div class="fixed-bottom">
   <footer class="py-3 my-4">
-    <p class="text-center text-body-secondary">© 2023 @CBE Wolaita District, ISOS Team</p>
+    <p class="text-center text-body-secondary">© 2023 @CBE Wolaita Sodo District, ISOS Team</p>
   </footer>
 </div>
 </body>

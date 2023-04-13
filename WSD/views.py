@@ -1,38 +1,34 @@
-from django.shortcuts import render
-from django.db.models import Q
 from .models import Branch, Manager
-from rest_framework import generics
+from django.views.generic import TemplateView, ListView
+from django.db.models import Q
 
-def index(request):
-    manager = Manager.objects.all()
-    branch = Branch.objects.all()
-    context = {
-        'managers': manager,
-        'branches': branch,
-        }
+class HomePageView(TemplateView):
+    template_name = 'home.html'
 
-    return render(request, 'home.html', context=context)
+class ManagerSearchResultsView(ListView):
+    model = Manager
+    template_name = 'manager_search_results.html'
 
+    def get_queryset(self):
+        query = self.request.GET.get("qm")
+        print(query)
+        return Manager.objects.filter(
+            Q(name__icontains=query) | Q(position__icontains=query))
 
-def ManagerView(request):
-    manager = Manager.objects.all()
+class BranchSearchResultsView(ListView):
+    model = Branch
+    template_name = 'branch_search_results.html'
 
-    context = {
-        'managers': manager,
-        }
+    def get_queryset(self):
+        query = self.request.GET.get("qb")
+        print(query)
+        return Branch.objects.filter(
+            Q(name__icontains=query))
 
-    return render(request, 'manager.html', context=context)
+class ManagerView(ListView):
+    model = Manager 
+    template_name = 'manager.html'
 
-def BranchView(request):
-    branch = Branch.objects.all()
-
-    context = {
-        'branches': branch,
-        }
-
-    return render(request, 'branch.html', context=context)
-
-def SearchView(request):
-    query = request.GET.get('search')
-    print(query)
-    return render(request, 'search.html', context=result)    
+class BranchView(ListView):
+    model = Branch 
+    template_name = 'branch.html'
